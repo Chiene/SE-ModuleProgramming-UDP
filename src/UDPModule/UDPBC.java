@@ -61,11 +61,11 @@ public class UDPBC implements IUDPBC {
 	private void broadCastToClient() throws IOException
 	{
 		Vector<String> IPTable = _tcpsm.getClientIPTable();
-		Vector<Sprite> data = _cdc.getUpdateInfo();
+		Vector<String> data = _cdc.getUpdateInfo();
 		
-		for (Sprite object : data) 
+		for (String message : data) 
 		{
-			byte buffer[] = object.toString().getBytes();
+			byte buffer[] = message.getBytes();
 			for (String ip : IPTable) {
 				socket.send(new DatagramPacket(buffer, buffer.length, InetAddress.getByName(ip), port));
 			}
