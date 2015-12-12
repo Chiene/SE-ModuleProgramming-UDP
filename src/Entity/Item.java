@@ -1,5 +1,7 @@
 package Entity;
 
+import Enum.SpriteType;
+
 public class Item extends Sprite {
 
 	boolean isShared ;
@@ -14,5 +16,14 @@ public class Item extends Sprite {
 		// TODO Auto-generated method stub
 		return id + " " + name + " " + String.valueOf(isShared);
 	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return SpriteType.ITEM.toString();
+	}
+	
+	
+	
 
 }

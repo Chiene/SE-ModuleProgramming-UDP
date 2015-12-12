@@ -1,5 +1,7 @@
 package Entity;
 
+import Enum.SpriteType;
+
 public class VirtualCharacter extends Sprite {
 	String direction ;
 	String speed = "0";
@@ -18,5 +20,12 @@ public class VirtualCharacter extends Sprite {
 		// TODO Auto-generated method stub
 		return id + " " + name + " " + direction +" " + speed + " " + x + " " + y;
 	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return SpriteType.VIRTUALCHARACTER.toString();
+	}
 	
+    
 }
