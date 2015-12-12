@@ -13,7 +13,7 @@ public class CDC {
 	{
 		data = new Vector<BaseObject>();
 		data.add(new User("1", "user1", "0", "0"));
-		data.add(new Item("1", "user2", "0", "0"));
+		data.add(new Item("1", "item1", "0", "0"));
 	}
 	
 	public void startUpdatingThread()
