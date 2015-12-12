@@ -1,18 +1,18 @@
 package Entity;
 
-public class Item extends BaseObject {
+public class Item extends Sprite {
 
-	public Item(String _id,String _name,String _x,String _y) {
+	boolean isShared ;
+	public Item(String _id,String _name,boolean _isShared) {
 		// TODO Auto-generated constructor stub
 		id = _id;
 		name = _name;
-		x = _x;
-		y = _y;
+		isShared = _isShared;
 	}
 	
 	public String toString() {
 		// TODO Auto-generated method stub
-		return id + " " + name + " " + x + " " + y;
+		return id + " " + name + " " + String.valueOf(isShared);
 	}
 
 }

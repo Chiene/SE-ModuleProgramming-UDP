@@ -1,6 +1,6 @@
 package Entity;
 
-public class BaseObject {
+public class Sprite {
 	String id;
 	String name;
 	String x;

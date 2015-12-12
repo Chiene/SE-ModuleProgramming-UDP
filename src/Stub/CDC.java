@@ -2,18 +2,19 @@ package Stub;
 
 import java.util.Vector;
 
-import Entity.BaseObject;
+import Entity.Sprite;
 import Entity.Item;
-import Entity.User;
+import Entity.VirtualCharacter;
+import Enum.VirtualCharacterDirection;
 
 public class CDC {
-	Vector<BaseObject> data;
+	Vector<Sprite> data;
 	
 	public CDC()
 	{
-		data = new Vector<BaseObject>();
-		data.add(new User("1", "user1", "0", "0"));
-		data.add(new Item("1", "item1", "0", "0"));
+		data = new Vector<Sprite>();
+		data.add(new VirtualCharacter("1","user1",VirtualCharacterDirection.EAST.toString(),"1", "0", "0"));
+		data.add(new Item("1", "item1",false));
 	}
 	
 	public void startUpdatingThread()
@@ -21,7 +22,7 @@ public class CDC {
 		
 	}
 	
-	public Vector<BaseObject> getUpdateInfo()
+	public Vector<Sprite> getUpdateInfo()
 	{
 		return data;
 	}
