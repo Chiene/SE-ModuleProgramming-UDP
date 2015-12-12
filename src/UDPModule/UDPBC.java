@@ -10,7 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
-import Entity.BaseObject;
+import Entity.Sprite;
 import Stub.CDC;
 import Stub.DOM;
 import Stub.TCPSM;
@@ -18,7 +18,7 @@ import Stub.TCPSM;
 public class UDPBC implements IUDPBC {
 	
 	private int port = 27016;;
-	private long updateSecond = 20;
+	private long updateSecond = 50;
 	
 	private TCPSM _tcpsm;
 	private CDC _cdc;
@@ -61,9 +61,9 @@ public class UDPBC implements IUDPBC {
 	private void broadCastToClient() throws IOException
 	{
 		Vector<String> IPTable = _tcpsm.getClientIPTable();
-		Vector<BaseObject> data = _cdc.getUpdateInfo();
+		Vector<Sprite> data = _cdc.getUpdateInfo();
 		
-		for (BaseObject object : data) 
+		for (Sprite object : data) 
 		{
 			byte buffer[] = object.toString().getBytes();
 			for (String ip : IPTable) {

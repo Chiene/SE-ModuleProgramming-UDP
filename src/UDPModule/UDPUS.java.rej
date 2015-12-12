@@ -1,0 +1,9 @@
+diff a/src/UDPModule/UDPUS.java b/src/UDPModule/UDPUS.java	(rejected hunks)
+@@ -36,7 +36,6 @@
+ 				 socket.receive(dataPacket);
+ 				 String msg = new String(buffer, 0, dataPacket.getLength());    // �N�����T���ഫ���r��C
+ 		         System.out.println(msg); 
+-				
+ 		         
+ 			} catch (IOException e) {
+ 				// TODO Auto-generated catch block

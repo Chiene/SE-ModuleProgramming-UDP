@@ -34,7 +34,7 @@ public class UDPUS implements IUDPUS {
 		{
 			try {
 				 socket.receive(dataPacket);
-				 String msg = new String(buffer, 0, dataPacket.getLength());    // 將接收訊息轉換為字串。
+				 String msg = new String(buffer, 0, dataPacket.getLength());
 		         System.out.println(msg); 
 				
 			} catch (IOException e) {
@@ -43,6 +43,6 @@ public class UDPUS implements IUDPUS {
 			}
 			
 		}
-	}
+	}	
 
 }

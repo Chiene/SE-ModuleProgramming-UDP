@@ -13,7 +13,7 @@ public class CDC {
 	public CDC()
 	{
 		data = new Vector<Sprite>();
-		data.add(new VirtualCharacter("1","user1",VirtualCharacterDirection.EAST.toString(),"1", "0", "0"));
+		data.add(new VirtualCharacter("1","user1",VirtualCharacterDirection.EAST.toString(),"1",	 "0", "0"));
 		data.add(new Item("1", "item1",false));
 	}
 	
