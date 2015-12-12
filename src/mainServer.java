@@ -17,6 +17,7 @@ public class mainServer {
 	
 	public void run()
 	{
+		_CDC.initUpdateInfor();
 		_UDPBC.startUDPBroadCast();
 	}
 	
