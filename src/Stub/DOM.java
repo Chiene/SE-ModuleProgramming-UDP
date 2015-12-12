@@ -4,24 +4,24 @@ public class DOM {
 	public DOM() {
 		// TODO Auto-generated constructor stub
 	}
-	public void addVirtualCharacter()
+	public void addVirtualCharacter(String msg)
 	{
-		
+		System.out.println("addVirtualCharacter " + msg);
 	}
 	
-	public void addItem()
+	public void addItem(String msg)
 	{
-		
+		System.out.println("addItem " + msg);
 	}
 	
-	public void updateVirtualCharacter()
+	public void updateVirtualCharacter(String msg)
 	{
-		
+		System.out.println("updateVirtualCharacter " + msg);
 	}
 	
-	public void updateItem()
+	public void updateItem(String msg)
 	{
-		
+		System.out.println("updateItem " + msg);
 	}
 	
 }

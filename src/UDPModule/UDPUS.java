@@ -13,6 +13,8 @@ import Enum.ServerActionType;
 import Enum.SpriteType;
 import Stub.DOM;
 import Stub.TCPSM;
+import UDPModule.Entity.SActionMode;
+import UDPModule.Factory.ServerActionFactory;
 
 public class UDPUS implements IUDPUS {
 	private DOM dom;
@@ -55,12 +57,11 @@ public class UDPUS implements IUDPUS {
 					e.printStackTrace();
 				}
 			}
-		}, updateSecond);
+		},0, updateSecond);
 	}
 	
 	private void reciveFromUDPServer() throws IOException
 	{
-		
 		socket.receive(dataPacket);
 		String msgToken[] = new String[3];
 		String msg = new String(buffer, 0, dataPacket.getLength());
@@ -68,38 +69,10 @@ public class UDPUS implements IUDPUS {
 		{
 			int subIndex = msg.indexOf(" ");
 			msgToken[i] = msg.substring(0,subIndex);
-			msg = msg.substring(subIndex);
+			msg = msg.substring(subIndex+1);
 		}
-		
-		switch (ServerActionType.valueOf(msgToken[0])){
-		case ADD:
-			switch (SpriteType.valueOf(msgToken[1])) {
-			case VIRTUALCHARACTER:
-				dom.addVirtualCharacter();
-				break;
-			case ITEM:
-				dom.addItem();
-				break;
-			default:
-				break;
-			}
-			break;
-		case UPDATE:
-			switch (SpriteType.valueOf(msgToken[1])) {
-			case VIRTUALCHARACTER:
-				dom.updateVirtualCharacter();
-				break;
-			case ITEM:
-				dom.updateItem();
-				break;
-			default:
-				break;
-			}
-			break;
-		default:
-			break;
-		}
-		 
+		SActionMode actionMode = ServerActionFactory.getServerActionMode(msgToken[0]);
+		actionMode.update(dom,msgToken[1],msg);	
 	}
 	
 
