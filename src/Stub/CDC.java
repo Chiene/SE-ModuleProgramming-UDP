@@ -5,7 +5,7 @@ import java.util.Vector;
 import Entity.Sprite;
 import Entity.Item;
 import Entity.VirtualCharacter;
-import Enum.ServerAction;
+import Enum.ServerActionType;
 import Enum.VirtualCharacterDirection;
 
 public class CDC {
@@ -40,11 +40,11 @@ public class CDC {
 		{
 			if(i <= 3) 
 			{
-				updateInfo.add(ServerAction.ADD.toString() + " " +data.get(i).getType() +" " +data.get(i).toString());
+				updateInfo.add(ServerActionType.ADD.toString() + " " +data.get(i).getType() +" " +data.get(i).toString());
 			}
 			else 
 			{
-				updateInfo.add(ServerAction.UPDATE.toString() + " " +data.get(i).getType() +" " +data.get(i).toString());
+				updateInfo.add(ServerActionType.UPDATE.toString() + " " +data.get(i).getType() +" " +data.get(i).toString());
 			}		
 		}
 		data.clear();

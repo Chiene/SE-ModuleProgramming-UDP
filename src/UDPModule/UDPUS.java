@@ -9,7 +9,7 @@ import java.util.TimerTask;
 
 import org.ietf.jgss.Oid;
 
-import Enum.ServerAction;
+import Enum.ServerActionType;
 import Enum.SpriteType;
 import Stub.DOM;
 import Stub.TCPSM;
@@ -71,7 +71,7 @@ public class UDPUS implements IUDPUS {
 			msg = msg.substring(subIndex);
 		}
 		
-		switch (ServerAction.valueOf(msgToken[0])){
+		switch (ServerActionType.valueOf(msgToken[0])){
 		case ADD:
 			switch (SpriteType.valueOf(msgToken[1])) {
 			case VIRTUALCHARACTER:

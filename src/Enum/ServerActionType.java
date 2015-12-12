@@ -1,7 +1,7 @@
 package Enum;
 
 
-public enum ServerAction 
+public enum ServerActionType 
 {
 	ADD,
 	UPDATE,
