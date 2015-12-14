@@ -8,35 +8,27 @@ import Entity.VirtualCharacter;
 import Enum.ServerActionType;
 import Enum.VirtualCharacterDirection;
 
-public class CDC {
+public class CDCStub {
 	Vector<String> data;
-	
-	public CDC()
-	{
+
+	public CDCStub() {
 		data = new Vector<String>();
-		//Add two users and items to data;
+		// Add two users and items to data;
 	}
-	
-	public void startUpdatingThread()
-	{
-		
-	}
-	
-	//Use for testing
-	
+
+	// Use for testing
 	public void insertData(String msg) {
 		data.add(msg);
 	}
-	
+
 	public void clearData() {
 		data.clear();
 	}
-	
+
 	//
-	public Vector<String> getUpdateInfo()
-	{
+	public Vector<String> getUpdateInfo() {
 		Vector<String> updateInfo = data;
 		return updateInfo;
 	}
-	
+
 }

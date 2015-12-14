@@ -1,7 +1,7 @@
 package UDPModule.Entity;
 
-import Stub.DOM;
+import Stub.DOMStub;
 
 public abstract class SActionMode {
-	public abstract void update(DOM dom,String spriteType,String msg);
+	public abstract void update(DOMStub dom,String spriteType,String msg);
 }

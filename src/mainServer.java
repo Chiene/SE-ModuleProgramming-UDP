@@ -1,25 +1,28 @@
-import Stub.CDC;
-import Stub.TCPSM;
+import Enum.ServerActionType;
+import Enum.SpriteType;
+import Stub.CDCStub;
+import Stub.TCPSMStub;
 import UDPModule.UDPBC;
 import UDPModule.UDPUS;
 
 public class mainServer {
-	CDC _CDC;
-	TCPSM _TCPSM;
+	CDCStub _CDC;
+	TCPSMStub _TCPSM;
 	UDPBC _UDPBC;
 	UDPUS _UDPUS;
-	public mainServer()
-	{
-		_TCPSM = new TCPSM();
-		_CDC = new CDC();
-		_UDPBC = new UDPBC(_TCPSM,_CDC);
+
+	public mainServer() {
+		_TCPSM = new TCPSMStub();
+		_CDC = new CDCStub();
+		_CDC.insertData(ServerActionType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + "user1 1 1");
+		_TCPSM.insertIp("127.0.0.1");
+		_UDPBC = new UDPBC(_TCPSM, _CDC);
 	}
-	
-	public void run()
-	{
+
+	public void run() {
 		_UDPBC.startUDPBroadCast();
 	}
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new mainServer().run();

@@ -1,8 +1,8 @@
 package UDPModule.Entity;
 
-import Stub.DOM;
+import Stub.DOMStub;
 
 public abstract class SpriteCategory {
-	public abstract void add(DOM dom,String msg);
-	public abstract void update(DOM dom,String msg);
+	public abstract void add(DOMStub dom,String msg);
+	public abstract void update(DOMStub dom,String msg);
 }

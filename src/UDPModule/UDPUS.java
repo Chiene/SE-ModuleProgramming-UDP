@@ -6,47 +6,40 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import org.ietf.jgss.Oid;
-
-import Enum.ServerActionType;
-import Enum.SpriteType;
-import Stub.DOM;
-import Stub.TCPSM;
+import Stub.DOMStub;
 import UDPModule.Entity.SActionMode;
 import UDPModule.Factory.ServerActionFactory;
 
 public class UDPUS implements IUDPUS {
-	private DOM dom;
-	private int port = 27016;;
+	private DOMStub _dom;
+	private int _port = 27016;;
 	private int bufferSize = 512;
 	private long updateSecond = 50;
-	private byte buffer[];
-	
-	private DatagramPacket dataPacket;
-	private DatagramSocket socket;
-	
-	private Timer reciveUDPDataTimer;
-	
-	public UDPUS(DOM _dom) {
-		buffer = new byte[bufferSize];
-		dataPacket = new DatagramPacket(buffer, buffer.length);
-		reciveUDPDataTimer = new Timer();
-		dom = _dom;
-	}
-	
-	@Override
-	public void initUDPserver() {
+	private byte _buffer[];
+
+	private DatagramPacket _dataPacket;
+	private DatagramSocket _socket;
+
+	private Timer _reciveUDPDataTimer;
+
+	public UDPUS(DOMStub dom) {
+		_buffer = new byte[bufferSize];
+		_dataPacket = new DatagramPacket(_buffer, _buffer.length);
+		_reciveUDPDataTimer = new Timer();
+		_dom = dom;
 		try {
-			socket = new DatagramSocket(port);
+			_socket = new DatagramSocket(_port);
 		} catch (SocketException e) {
 			System.out.println("error port");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		reciveUDPDataTimer.schedule(new TimerTask() {
-			
+	}
+
+	@Override
+	public void initUDPserver() {
+		_reciveUDPDataTimer.schedule(new TimerTask() {
+
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -57,24 +50,30 @@ public class UDPUS implements IUDPUS {
 					e.printStackTrace();
 				}
 			}
-		},0, updateSecond);
+		}, 0, updateSecond);
 	}
-	
-	private void reciveFromUDPServer() throws IOException
-	{
-		socket.receive(dataPacket);
+
+	@Override
+	public void stopUDPServer() {
+		// TODO Auto-generated method stub
+		if (_reciveUDPDataTimer != null) {
+			_reciveUDPDataTimer.cancel();
+			_socket.close();
+		}
+
+	}
+
+	private void reciveFromUDPServer() throws IOException {
+		_socket.receive(_dataPacket);
 		String msgToken[] = new String[3];
-		String msg = new String(buffer, 0, dataPacket.getLength());
-		for(int i =0 ; i< 3 ;i++)
-		{
+		String msg = new String(_buffer, 0, _dataPacket.getLength());
+		for (int i = 0; i < 3; i++) {
 			int subIndex = msg.indexOf(" ");
-			msgToken[i] = msg.substring(0,subIndex);
-			msg = msg.substring(subIndex+1);
+			msgToken[i] = msg.substring(0, subIndex);
+			msg = msg.substring(subIndex + 1);
 		}
 		SActionMode actionMode = ServerActionFactory.getServerActionMode(msgToken[0]);
-		actionMode.update(dom,msgToken[1],msg);	
+		actionMode.update(_dom, msgToken[1], msg);
 	}
-	
-
 
 }

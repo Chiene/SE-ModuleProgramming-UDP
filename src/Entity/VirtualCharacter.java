@@ -3,10 +3,10 @@ package Entity;
 import Enum.SpriteType;
 
 public class VirtualCharacter extends Sprite {
-	String direction ;
+	String direction;
 	String speed = "0";
-	
-	public VirtualCharacter(String _id,String _name,String _dir,String _speed,String _x,String _y) {
+
+	public VirtualCharacter(String _id, String _name, String _dir, String _speed, String _x, String _y) {
 		// TODO Auto-generated constructor stub
 		id = _id;
 		name = _name;
@@ -15,10 +15,10 @@ public class VirtualCharacter extends Sprite {
 		x = _x;
 		y = _y;
 	}
-	
+
 	public String toString() {
 		// TODO Auto-generated method stub
-		return id + " " + name + " " + direction +" " + speed + " " + x + " " + y;
+		return id + " " + name + " " + direction + " " + speed + " " + x + " " + y;
 	}
 
 	@Override
@@ -26,6 +26,5 @@ public class VirtualCharacter extends Sprite {
 		// TODO Auto-generated method stub
 		return SpriteType.VIRTUALCHARACTER.toString();
 	}
-	
-    
+
 }

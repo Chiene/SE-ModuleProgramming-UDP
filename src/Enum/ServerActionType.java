@@ -1,10 +1,5 @@
 package Enum;
 
-
-public enum ServerActionType 
-{
-	ADD,
-	UPDATE,
-	DELETE
+public enum ServerActionType {
+	ADD, UPDATE, DELETE
 }
-

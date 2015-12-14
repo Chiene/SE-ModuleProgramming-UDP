@@ -1,8 +1,5 @@
 package Enum;
 
 public enum VirtualCharacterDirection {
-	EAST,
-	WEST,
-	SOUTH,
-	NORTH
+	EAST, WEST, SOUTH, NORTH
 }

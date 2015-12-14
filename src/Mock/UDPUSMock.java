@@ -11,35 +11,38 @@ import UDPModule.IUDPUS;
 import UDPModule.Entity.SActionMode;
 import UDPModule.Factory.ServerActionFactory;
 
-public class UDPUSMock implements IUDPUS{
+public class UDPUSMock implements IUDPUS {
 
-	private int port = 27016;;
-	private int bufferSize = 512;
-	private long updateSecond = 50;
-	private byte buffer[];
-	
-	private DatagramPacket dataPacket;
-	private DatagramSocket socket;
-	
-	private Timer reciveUDPDataTimer;
-	
+	private int _port = 27016;;
+	private int _bufferSize = 512;
+	private byte _buffer[];
+
+	private DatagramPacket _dataPacket;
+	private DatagramSocket _socket;
+
 	public UDPUSMock() {
 		// TODO Auto-generated constructor stub
-		buffer = new byte[bufferSize];
-		dataPacket = new DatagramPacket(buffer, buffer.length);
-		reciveUDPDataTimer = new Timer();
-		
+		_buffer = new byte[_bufferSize];
+		_dataPacket = new DatagramPacket(_buffer, _buffer.length);
 	}
 
 	@Override
 	public void initUDPserver() {
-		
+
 	}
-	
+
+	@Override
+	public void stopUDPServer() {
+		// TODO Auto-generated method stub
+		if (_socket != null) {
+			_socket.close();
+		}
+	}
+
 	public String getData() {
 		try {
-			socket = new DatagramSocket(port);
-			socket.receive(dataPacket);
+			_socket = new DatagramSocket(_port);
+			_socket.receive(_dataPacket);
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,8 +50,8 @@ public class UDPUSMock implements IUDPUS{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new String(buffer, 0, dataPacket.getLength());
+		_socket.close();
+		return new String(_buffer, 0, _dataPacket.getLength());
 	}
 
-	
 }

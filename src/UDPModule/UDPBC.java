@@ -9,67 +9,73 @@ import java.net.UnknownHostException;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
-
-import Entity.Sprite;
-import Stub.CDC;
-import Stub.DOM;
-import Stub.TCPSM;
+import Stub.CDCStub;
+import Stub.TCPSMStub;
 
 public class UDPBC implements IUDPBC {
-	
+
 	private int port = 27016;;
 	private long updateSecond = 50;
-	
-	private TCPSM _tcpsm;
-	private CDC _cdc;
-	
+
+	private TCPSMStub _tcpsm;
+	private CDCStub _cdc;
+
 	private Timer _broadCaseTimer;
 
-	private DatagramSocket socket;
-	
-	public UDPBC(TCPSM tcpsm,CDC cdc) {
+	private DatagramSocket _socket;
+
+	public UDPBC(TCPSMStub tcpsm, CDCStub cdc) {
 		_tcpsm = tcpsm;
 		_cdc = cdc;
 		_broadCaseTimer = new Timer();
+		try {
+			_socket = new DatagramSocket();
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			_socket.close();
+			e.printStackTrace();
+		}
 	}
-	
+
 	@Override
 	public void startUDPBroadCast() {
 		// TODO Auto-generated method stub
-		try {
-			socket = new DatagramSocket();			
-		} catch (SocketException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
 		_broadCaseTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				try {
 					broadCastToClient();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (IOException e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
 				}
 			}
 		}, 0, updateSecond);
 
 	}
-	
-	private void broadCastToClient() throws IOException
-	{
+
+	@Override
+	public void endUDPBroadCast() {
+		// TODO Auto-generated method stub
+		if (_broadCaseTimer != null) {
+			_socket.close();
+			_broadCaseTimer.cancel();
+		}
+	}
+
+	private void broadCastToClient() throws IOException, UnknownHostException {
 		Vector<String> IPTable = _tcpsm.getClientIPTable();
 		Vector<String> data = _cdc.getUpdateInfo();
-		
-		for (String message : data) 
-		{
+
+		for (String message : data) {
 			byte buffer[] = message.getBytes();
 			for (String ip : IPTable) {
-				socket.send(new DatagramPacket(buffer, buffer.length, InetAddress.getByName(ip), port));
+				_socket.send(new DatagramPacket(buffer, buffer.length, InetAddress.getByName(ip), port));
 			}
 		}
-		
+
 	}
+
 }
