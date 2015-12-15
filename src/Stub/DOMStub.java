@@ -1,6 +1,8 @@
 package Stub;
 
-public class DOMStub {
+import Interface.IDOM;
+
+public class DOMStub implements IDOM{
 	public DOMStub() {
 		// TODO Auto-generated constructor stub
 	}

@@ -67,7 +67,7 @@ public class UDPUS implements IUDPUS {
 		_socket.receive(_dataPacket);
 		String msgToken[] = new String[3];
 		String msg = new String(_buffer, 0, _dataPacket.getLength());
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 2; i++) {
 			int subIndex = msg.indexOf(" ");
 			msgToken[i] = msg.substring(0, subIndex);
 			msg = msg.substring(subIndex + 1);

@@ -18,7 +18,7 @@ public class UDPBCStub implements IUDPBC {
 	public UDPBCStub() {
 		// TODO Auto-generated constructor stub
 		try {
-			_socket = new DatagramSocket(_port);
+			_socket = new DatagramSocket();
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
