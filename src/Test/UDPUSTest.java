@@ -24,12 +24,15 @@ public class UDPUSTest {
 	public UDPUSTest() {
 		// TODO Auto-generated constructor stub
 		_domMock = new DOMMock();
+		_udpus = new UDPUS(_domMock);
+		_udpBCStub = new UDPBCStub();
 	}
 	
 	@Before 
 	public void setup() {
-		_udpus = new UDPUS(_domMock);
-		_udpBCStub = new UDPBCStub();
+		_udpus.initUDPserver();
+		_udpBCStub.startUDPBroadCast();
+		
 	}
 	
 	@After
@@ -40,7 +43,6 @@ public class UDPUSTest {
 
 	@Test
 	public void testUDPUSToAddItem() {
-		_udpus.initUDPserver();
 		String msg = "user1 1 1";
 		String data = ServerActionType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + msg;
 		String expected = "addItem " + msg;
@@ -52,7 +54,6 @@ public class UDPUSTest {
 
 	@Test
 	public void testUDPUSToUpdateItem() {
-		_udpus.initUDPserver();
 		String msg = "user2 2 2";
 		String data = ServerActionType.UPDATE.toString() + " " + SpriteType.ITEM.toString() + " " + msg;
 		String expected = "updateItem " + msg;
@@ -64,7 +65,6 @@ public class UDPUSTest {
 
 	@Test
 	public void testUDPUSToAddVirtualCharacter() {
-		_udpus.initUDPserver();
 		String msg = "user2 2 2";
 		String data = ServerActionType.ADD.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
 		String expected = "addVirtualCharacter " + msg;
@@ -76,7 +76,6 @@ public class UDPUSTest {
 
 	@Test
 	public void testUDPUSToUpdateVirtualCharacter() {
-		_udpus.initUDPserver();
 		String msg = "user1 1 1";
 		String data = ServerActionType.UPDATE.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
 		String expected = "updateVirtualCharacter " + msg;

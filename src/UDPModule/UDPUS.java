@@ -27,6 +27,10 @@ public class UDPUS implements IUDPUS {
 		_dataPacket = new DatagramPacket(_buffer, _buffer.length);
 		_reciveUDPDataTimer = new Timer();
 		_dom = dom;
+	}
+
+	@Override
+	public void initUDPserver() {
 		try {
 			_socket = new DatagramSocket(_port);
 		} catch (SocketException e) {
@@ -34,10 +38,6 @@ public class UDPUS implements IUDPUS {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void initUDPserver() {
 		_reciveUDPDataTimer.schedule(new TimerTask() {
 
 			@Override

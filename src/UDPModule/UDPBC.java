@@ -28,6 +28,12 @@ public class UDPBC implements IUDPBC {
 		_tcpsm = tcpsm;
 		_cdc = cdc;
 		_broadCaseTimer = new Timer();
+
+	}
+
+	@Override
+	public void startUDPBroadCast() {
+		// TODO Auto-generated method stub
 		try {
 			_socket = new DatagramSocket();
 		} catch (SocketException e) {
@@ -35,12 +41,6 @@ public class UDPBC implements IUDPBC {
 			_socket.close();
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void startUDPBroadCast() {
-		// TODO Auto-generated method stub
-
 		_broadCaseTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {

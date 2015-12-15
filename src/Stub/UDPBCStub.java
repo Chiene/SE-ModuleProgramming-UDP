@@ -17,18 +17,18 @@ public class UDPBCStub implements IUDPBC {
 
 	public UDPBCStub() {
 		// TODO Auto-generated constructor stub
+		
+	}
+
+	@Override
+	public void startUDPBroadCast() {
+		// TODO Auto-generated method stub
 		try {
 			_socket = new DatagramSocket();
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void startUDPBroadCast() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
