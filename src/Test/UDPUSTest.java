@@ -4,11 +4,15 @@ import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.net.BindException;
+import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import Enum.ServerActionType;
 import Enum.SpriteType;
@@ -30,8 +34,6 @@ public class UDPUSTest {
 	
 	@Before 
 	public void setup() {
-		_udpus.initUDPserver();
-		_udpBCStub.startUDPBroadCast();
 		
 	}
 	
@@ -43,6 +45,8 @@ public class UDPUSTest {
 
 	@Test
 	public void testUDPUSToAddItem() {
+		_udpus.initUDPserver();
+		_udpBCStub.startUDPBroadCast();
 		String msg = "user1 1 1";
 		String data = ServerActionType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + msg;
 		String expected = "addItem " + msg;
@@ -54,6 +58,8 @@ public class UDPUSTest {
 
 	@Test
 	public void testUDPUSToUpdateItem() {
+		_udpus.initUDPserver();
+		_udpBCStub.startUDPBroadCast();
 		String msg = "user2 2 2";
 		String data = ServerActionType.UPDATE.toString() + " " + SpriteType.ITEM.toString() + " " + msg;
 		String expected = "updateItem " + msg;
@@ -65,6 +71,8 @@ public class UDPUSTest {
 
 	@Test
 	public void testUDPUSToAddVirtualCharacter() {
+		_udpus.initUDPserver();
+		_udpBCStub.startUDPBroadCast();
 		String msg = "user2 2 2";
 		String data = ServerActionType.ADD.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
 		String expected = "addVirtualCharacter " + msg;
@@ -76,6 +84,8 @@ public class UDPUSTest {
 
 	@Test
 	public void testUDPUSToUpdateVirtualCharacter() {
+		_udpus.initUDPserver();
+		_udpBCStub.startUDPBroadCast();
 		String msg = "user1 1 1";
 		String data = ServerActionType.UPDATE.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
 		String expected = "updateVirtualCharacter " + msg;

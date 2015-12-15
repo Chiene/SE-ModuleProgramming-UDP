@@ -20,6 +20,8 @@ public class UDPUSMock implements IUDPUS {
 	private DatagramPacket _dataPacket;
 	private DatagramSocket _socket;
 
+	private String result = "";
+	
 	public UDPUSMock() {
 		// TODO Auto-generated constructor stub
 		_buffer = new byte[_bufferSize];
@@ -39,7 +41,7 @@ public class UDPUSMock implements IUDPUS {
 		}
 	}
 
-	public String getData() {
+	public void receiveData() {
 		try {
 			_socket = new DatagramSocket(_port);
 			_socket.receive(_dataPacket);
@@ -50,8 +52,12 @@ public class UDPUSMock implements IUDPUS {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		result = new String(_buffer, 0, _dataPacket.getLength());
 		_socket.close();
-		return new String(_buffer, 0, _dataPacket.getLength());
+	}
+	
+	public String getResult() {
+		return result;
 	}
 
 }

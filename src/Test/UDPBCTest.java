@@ -53,7 +53,9 @@ public class UDPBCTest {
 		String data = ServerActionType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + "user1 1 1";
 		_cdc.insertData(data);
 		udpBroadCast.startUDPBroadCast();
-		assertTrue(data.equals(udpusMock.getData()));
+		udpusMock.receiveData();
+		while(udpusMock.getResult().isEmpty()){}
+		assertTrue(data.equals(udpusMock.getResult()));
 	}
 
 }

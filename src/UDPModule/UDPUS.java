@@ -34,9 +34,7 @@ public class UDPUS implements IUDPUS {
 		try {
 			_socket = new DatagramSocket(_port);
 		} catch (SocketException e) {
-			System.out.println("error port");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
 		_reciveUDPDataTimer.schedule(new TimerTask() {
 
@@ -46,8 +44,6 @@ public class UDPUS implements IUDPUS {
 				try {
 					reciveFromUDPServer();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 		}, 0, updateSecond);
@@ -60,7 +56,6 @@ public class UDPUS implements IUDPUS {
 			_reciveUDPDataTimer.cancel();
 			_socket.close();
 		}
-
 	}
 
 	private void reciveFromUDPServer() throws IOException {
