@@ -2,14 +2,14 @@ package Mock;
 
 import Stub.DOMStub;
 
-public class DOMMock extends DOMStub {
+public class  DOMMock extends DOMStub {
 
 	private String result = "";
 	public void addVirtualCharacter(String msg) {
 		result = "addVirtualCharacter " + msg;
 	}
 
-	public void addItem(String msg) {
+	public synchronized void addItem(String msg) {
 		result = "addItem " + msg;
 	}
 

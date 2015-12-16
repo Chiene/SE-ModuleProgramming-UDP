@@ -1,6 +1,10 @@
 package Test;
 
 import static org.junit.Assert.*;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,13 +19,13 @@ public class UDPUSTest {
 	private UDPBCStub _udpBCStub;
 	private DOMMock _domMock;
 
-	@Before 
+	@Before
 	public void setup() {
 		_domMock = new DOMMock();
 		_udpus = new UDPUS(_domMock);
 		_udpBCStub = new UDPBCStub();
 	}
-	
+
 	@After
 	public void setdown() {
 		_udpBCStub.endUDPBroadCast();
@@ -81,4 +85,30 @@ public class UDPUSTest {
 		assertTrue(expected.equals(_domMock.getResult()));
 	}
 
+	@Test
+	public void testGetErrorMessage() {
+		_udpus.initUDPserver();
+		_udpBCStub.startUDPBroadCast();
+		String msg = "user1 1 1";
+		String data = " " + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
+		_udpBCStub.send(data, "127.0.0.1");
+		new Timer().schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				assertTrue(_domMock.getResult().isEmpty());
+				_domMock.addVirtualCharacter("Error");
+			}
+		}, 1000);
+		while (_domMock.getResult().isEmpty()) {
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		assertTrue(_domMock.getResult().equals("addVirtualCharacter Error"));
+	}
 }
