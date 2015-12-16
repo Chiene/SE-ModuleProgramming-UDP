@@ -1,21 +1,10 @@
 package Test;
 
 import static org.junit.Assert.*;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.net.BindException;
-import java.net.DatagramSocket;
-import java.net.SocketException;
-import java.util.Scanner;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
-
-import Enum.ServerActionType;
-import Enum.SpriteType;
+import UDPModule.Enum.*;
 import Mock.DOMMock;
 import Stub.UDPBCStub;
 import UDPModule.UDPUS;

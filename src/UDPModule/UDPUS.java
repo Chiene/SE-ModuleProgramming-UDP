@@ -9,6 +9,7 @@ import java.util.TimerTask;
 import Stub.DOMStub;
 import UDPModule.Entity.SActionMode;
 import UDPModule.Factory.ServerActionFactory;
+import UDPModule.Tool.StreamParser;
 
 public class UDPUS implements IUDPUS {
 	private DOMStub _dom;
@@ -60,13 +61,8 @@ public class UDPUS implements IUDPUS {
 
 	private void reciveFromUDPServer() throws IOException {
 		_socket.receive(_dataPacket);
-		String msgToken[] = new String[3];
 		String msg = new String(_buffer, 0, _dataPacket.getLength());
-		for (int i = 0; i < 2; i++) {
-			int subIndex = msg.indexOf(" ");
-			msgToken[i] = msg.substring(0, subIndex);
-			msg = msg.substring(subIndex + 1);
-		}
+		String msgToken[] = StreamParser.getMsgToken(msg);
 		SActionMode actionMode = ServerActionFactory.getServerActionMode(msgToken[0]);
 		actionMode.update(_dom, msgToken[1], msg);
 	}

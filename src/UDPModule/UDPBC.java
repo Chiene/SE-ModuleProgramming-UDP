@@ -11,6 +11,8 @@ import java.util.TimerTask;
 import java.util.Vector;
 import Stub.CDCStub;
 import Stub.TCPSMStub;
+import UDPModule.Tool.StreamParser;
+import UDPModule.Tool.Validation;
 
 public class UDPBC implements IUDPBC {
 
@@ -70,6 +72,7 @@ public class UDPBC implements IUDPBC {
 		Vector<String> data = _cdc.getUpdateInfo();
 
 		for (String message : data) {
+			if(!Validation.validateUpdateMsg(message)) continue;
 			byte buffer[] = message.getBytes();
 			for (String ip : IPTable) {
 				_socket.send(new DatagramPacket(buffer, buffer.length, InetAddress.getByName(ip), port));

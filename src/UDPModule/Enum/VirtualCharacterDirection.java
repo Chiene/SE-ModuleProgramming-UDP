@@ -1,4 +1,4 @@
-package Enum;
+package UDPModule.Enum;
 
 public enum VirtualCharacterDirection {
 	EAST, WEST, SOUTH, NORTH

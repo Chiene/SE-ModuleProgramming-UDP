@@ -1,6 +1,6 @@
 package UDPModule.Factory;
 
-import Enum.SpriteType;
+import UDPModule.Enum.SpriteType;
 import UDPModule.Entity.SCItem;
 import UDPModule.Entity.SCVirtualCharacter;
 import UDPModule.Entity.SpriteCategory;

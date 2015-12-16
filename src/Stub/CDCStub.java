@@ -2,12 +2,6 @@ package Stub;
 
 import java.util.Vector;
 
-import Entity.Sprite;
-import Entity.Item;
-import Entity.VirtualCharacter;
-import Enum.ServerActionType;
-import Enum.VirtualCharacterDirection;
-
 public class CDCStub {
 	Vector<String> data;
 

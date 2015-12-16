@@ -1,9 +1,8 @@
-import Enum.ServerActionType;
-import Enum.SpriteType;
 import Stub.CDCStub;
 import Stub.TCPSMStub;
 import UDPModule.UDPBC;
 import UDPModule.UDPUS;
+import UDPModule.Enum.*;
 
 public class mainServer {
 	CDCStub _CDC;

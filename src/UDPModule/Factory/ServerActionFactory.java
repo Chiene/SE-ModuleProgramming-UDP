@@ -1,7 +1,6 @@
 package UDPModule.Factory;
 
-import Enum.ServerActionType;
-import Stub.DOMStub;
+import UDPModule.Enum.ServerActionType;
 import UDPModule.Entity.SActionMode;
 import UDPModule.Entity.SAddMode;
 import UDPModule.Entity.SUpdateMode;
