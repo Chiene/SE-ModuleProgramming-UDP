@@ -35,7 +35,7 @@ public class UDPBCTest {
 	@Test
 	public void testBroadCastOneMessage() {
 		_tcpsm.insertIp("127.0.0.1");
-		String data = ServerActionType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + "user1 1 1";
+		String data = ServerCommandType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + "user1 1 1";
 		_cdc.insertData(data);
 		udpBroadCast.startUDPBroadCast();
 		udpusMock.receiveData();

@@ -3,13 +3,13 @@ package UDPModule.Tool;
 import java.util.Iterator;
 import java.util.Vector;
 
-import UDPModule.Enum.ServerActionType;
+import UDPModule.Enum.ServerCommandType;
 import UDPModule.Enum.SpriteType;
 
 public class Validation {
 	static String actionMode[] = {
-			ServerActionType.ADD.toString(),
-			ServerActionType.UPDATE.toString()
+			ServerCommandType.ADD.toString(),
+			ServerCommandType.UPDATE.toString()
 			};
 	static String spriteCType[] = {
 			SpriteType.ITEM.toString(),

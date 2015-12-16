@@ -1,5 +1,5 @@
 package UDPModule.Enum;
 
-public enum ServerActionType {
+public enum ServerCommandType {
 	ADD, UPDATE, DELETE
 }

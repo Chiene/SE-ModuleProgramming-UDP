@@ -37,7 +37,7 @@ public class UDPUSTest {
 		_udpus.initUDPserver();
 		_udpBCStub.startUDPBroadCast();
 		String msg = "user1 1 1";
-		String data = ServerActionType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + msg;
+		String data = ServerCommandType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + msg;
 		String expected = "addItem " + msg;
 		_udpBCStub.send(data, "127.0.0.1");
 		while (_domMock.getResult().isEmpty()) {
@@ -50,7 +50,7 @@ public class UDPUSTest {
 		_udpus.initUDPserver();
 		_udpBCStub.startUDPBroadCast();
 		String msg = "user2 2 2";
-		String data = ServerActionType.UPDATE.toString() + " " + SpriteType.ITEM.toString() + " " + msg;
+		String data = ServerCommandType.UPDATE.toString() + " " + SpriteType.ITEM.toString() + " " + msg;
 		String expected = "updateItem " + msg;
 		_udpBCStub.send(data, "127.0.0.1");
 		while (_domMock.getResult().isEmpty()) {
@@ -63,7 +63,7 @@ public class UDPUSTest {
 		_udpus.initUDPserver();
 		_udpBCStub.startUDPBroadCast();
 		String msg = "user2 2 2";
-		String data = ServerActionType.ADD.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
+		String data = ServerCommandType.ADD.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
 		String expected = "addVirtualCharacter " + msg;
 		_udpBCStub.send(data, "127.0.0.1");
 		while (_domMock.getResult().isEmpty()) {
@@ -76,7 +76,7 @@ public class UDPUSTest {
 		_udpus.initUDPserver();
 		_udpBCStub.startUDPBroadCast();
 		String msg = "user1 1 1";
-		String data = ServerActionType.UPDATE.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
+		String data = ServerCommandType.UPDATE.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + msg;
 		String expected = "updateVirtualCharacter " + msg;
 		_udpBCStub.send(data, "127.0.0.1");
 		while (_domMock.getResult().isEmpty()) {

@@ -1,20 +1,20 @@
 package UDPModule.Factory;
 
-import UDPModule.Enum.ServerActionType;
-import UDPModule.Entity.SActionMode;
-import UDPModule.Entity.SAddMode;
-import UDPModule.Entity.SUpdateMode;
+import UDPModule.Enum.ServerCommandType;
+import UDPModule.Entity.SCommand;
+import UDPModule.Entity.SAddCommand;
+import UDPModule.Entity.SUpdateCommand;
 
 public class ServerActionFactory {
 
-	public static SActionMode getServerActionMode(String mode) {
-		SActionMode actionMode = null;
-		switch (ServerActionType.valueOf(mode)) {
+	public static SCommand getServerActionMode(String mode) {
+		SCommand actionMode = null;
+		switch (ServerCommandType.valueOf(mode)) {
 		case ADD:
-			actionMode = new SAddMode();
+			actionMode = new SAddCommand();
 			break;
 		case UPDATE:
-			actionMode = new SUpdateMode();
+			actionMode = new SUpdateCommand();
 			break;
 		default:
 			break;

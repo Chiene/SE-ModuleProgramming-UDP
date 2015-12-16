@@ -8,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import UDPModule.IUDPUS;
-import UDPModule.Entity.SActionMode;
+import UDPModule.Entity.SCommand;
 import UDPModule.Factory.ServerActionFactory;
 
 public class UDPUSMock implements IUDPUS {

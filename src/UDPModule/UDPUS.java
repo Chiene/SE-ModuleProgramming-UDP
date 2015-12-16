@@ -7,7 +7,7 @@ import java.net.SocketException;
 import java.util.Timer;
 import java.util.TimerTask;
 import Stub.DOMStub;
-import UDPModule.Entity.SActionMode;
+import UDPModule.Entity.SCommand;
 import UDPModule.Factory.ServerActionFactory;
 import UDPModule.Tool.StreamParser;
 
@@ -63,8 +63,8 @@ public class UDPUS implements IUDPUS {
 		_socket.receive(_dataPacket);
 		String msg = new String(_buffer, 0, _dataPacket.getLength());
 		String msgToken[] = StreamParser.getMsgToken(msg);
-		SActionMode actionMode = ServerActionFactory.getServerActionMode(msgToken[0]);
-		actionMode.update(_dom, msgToken[1], msgToken[2]);
+		SCommand actionMode = ServerActionFactory.getServerActionMode(msgToken[0]);
+		actionMode.handle(_dom, msgToken[1], msgToken[2]);
 	}
 
 }
