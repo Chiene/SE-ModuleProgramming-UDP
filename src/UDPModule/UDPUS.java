@@ -64,7 +64,7 @@ public class UDPUS implements IUDPUS {
 		String msg = new String(_buffer, 0, _dataPacket.getLength());
 		String msgToken[] = StreamParser.getMsgToken(msg);
 		SActionMode actionMode = ServerActionFactory.getServerActionMode(msgToken[0]);
-		actionMode.update(_dom, msgToken[1], msg);
+		actionMode.update(_dom, msgToken[1], msgToken[2]);
 	}
 
 }

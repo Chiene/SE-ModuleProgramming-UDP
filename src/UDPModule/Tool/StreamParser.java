@@ -10,6 +10,7 @@ public class StreamParser {
 			msgToken[i] = updateInfo.substring(0, subIndex);
 			updateInfo = updateInfo.substring(subIndex + 1);
 		}
+		msgToken[2] = updateInfo;
 		return msgToken;
 	}
 }
