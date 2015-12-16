@@ -3,6 +3,7 @@ package Test;
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import UDPModule.Enum.*;
 import Mock.DOMMock;
@@ -14,22 +15,18 @@ public class UDPUSTest {
 	private UDPBCStub _udpBCStub;
 	private DOMMock _domMock;
 
-	public UDPUSTest() {
-		// TODO Auto-generated constructor stub
+	@Before 
+	public void setup() {
 		_domMock = new DOMMock();
 		_udpus = new UDPUS(_domMock);
 		_udpBCStub = new UDPBCStub();
-	}
-	
-	@Before 
-	public void setup() {
-		
 	}
 	
 	@After
 	public void setdown() {
 		_udpBCStub.endUDPBroadCast();
 		_udpus.stopUDPServer();
+		_domMock.initResult();
 	}
 
 	@Test

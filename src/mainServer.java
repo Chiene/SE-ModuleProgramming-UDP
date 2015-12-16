@@ -14,6 +14,7 @@ public class mainServer {
 		_TCPSM = new TCPSMStub();
 		_CDC = new CDCStub();
 		_CDC.insertData(ServerCommandType.ADD.toString() + " " + SpriteType.ITEM.toString() + " " + "user1 1 1");
+		_CDC.insertData("Fail" + " " + SpriteType.ITEM.toString() + " " + "user1 1 1");
 		_TCPSM.insertIp("127.0.0.1");
 		_UDPBC = new UDPBC(_TCPSM, _CDC);
 	}

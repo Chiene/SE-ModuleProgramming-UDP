@@ -24,4 +24,8 @@ public class DOMMock extends DOMStub {
 	public String getResult() {
 		return result;
 	}
+	
+	public void initResult() {
+		result = "";
+	}
 }

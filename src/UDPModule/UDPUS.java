@@ -10,6 +10,7 @@ import Stub.DOMStub;
 import UDPModule.Entity.SCommand;
 import UDPModule.Factory.ServerActionFactory;
 import UDPModule.Tool.StreamParser;
+import UDPModule.Tool.Validation;
 
 public class UDPUS implements IUDPUS {
 	private DOMStub _dom;
@@ -62,9 +63,11 @@ public class UDPUS implements IUDPUS {
 	private void reciveFromUDPServer() throws IOException {
 		_socket.receive(_dataPacket);
 		String msg = new String(_buffer, 0, _dataPacket.getLength());
-		String msgToken[] = StreamParser.getMsgToken(msg);
-		SCommand actionMode = ServerActionFactory.getServerActionMode(msgToken[0]);
-		actionMode.handle(_dom, msgToken[1], msgToken[2]);
+		if(Validation.validateUpdateMsg(msg)) {
+			String msgToken[] = StreamParser.getMsgToken(msg);
+			SCommand actionMode = ServerActionFactory.getServerActionMode(msgToken[0]);
+			actionMode.handle(_dom, msgToken[1], msgToken[2]);
+		}
 	}
 
 }

@@ -22,14 +22,12 @@ public class ValidationTest {
 		String addVC = ServerCommandType.ADD.toString() + " " + SpriteType.VIRTUALCHARACTER.toString() + " "
 				+ "User2 2 2";
 		assertTrue(Validation.validateUpdateMsg(addVC));
-
 	}
 
 	@Test
 	public void testUpdateItemValidation() {
 		String updateItem = ServerCommandType.UPDATE.toString() + " " + SpriteType.ITEM.toString() + " " + "User2 2 2";
 		assertTrue(Validation.validateUpdateMsg(updateItem));
-
 	}
 
 	@Test
@@ -38,4 +36,32 @@ public class ValidationTest {
 				+ "User2 2 2";
 		assertTrue(Validation.validateUpdateMsg(UpdateVC));
 	}
+	
+	@Test 
+	public void testNotExistCommandValidation() {
+		String UpdateVC = "123" + " " + SpriteType.VIRTUALCHARACTER.toString() + " "
+				+ "User2 2 2";
+		assertFalse(Validation.validateUpdateMsg(UpdateVC));
+	}
+	
+	@Test 
+	public void testNotExistSpriteTypeValidation() {
+		String UpdateVC = ServerCommandType.UPDATE.toString() + " " + "Not" + " "
+				+ "User2 2 2";
+		assertFalse(Validation.validateUpdateMsg(UpdateVC));
+	}
+	
+	@Test 
+	public void testFailureWithOneMsgValidation() {
+		String UpdateVC = ServerCommandType.UPDATE.toString()+ SpriteType.ITEM.toString() + " " + "User2 2 2";;
+		assertFalse(Validation.validateUpdateMsg(UpdateVC));
+	}
+	
+	@Test 
+	public void testFailureWithErrorMsgValidation() {
+		String UpdateVC = "HelloWold";
+		assertFalse(Validation.validateUpdateMsg(UpdateVC));
+	}
+	
+	
 }
