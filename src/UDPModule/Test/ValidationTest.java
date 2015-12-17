@@ -1,4 +1,4 @@
-package Test;
+package UDPModule.Test;
 
 import static org.junit.Assert.*;
 
@@ -36,32 +36,30 @@ public class ValidationTest {
 				+ "User2 2 2";
 		assertTrue(Validation.validateUpdateMsg(UpdateVC));
 	}
-	
-	@Test 
+
+	@Test
 	public void testNotExistCommandValidation() {
-		String UpdateVC = "123" + " " + SpriteType.VIRTUALCHARACTER.toString() + " "
-				+ "User2 2 2";
+		String UpdateVC = "123" + " " + SpriteType.VIRTUALCHARACTER.toString() + " " + "User2 2 2";
 		assertFalse(Validation.validateUpdateMsg(UpdateVC));
 	}
-	
-	@Test 
+
+	@Test
 	public void testNotExistSpriteTypeValidation() {
-		String UpdateVC = ServerCommandType.UPDATE.toString() + " " + "Not" + " "
-				+ "User2 2 2";
+		String UpdateVC = ServerCommandType.UPDATE.toString() + " " + "Not" + " " + "User2 2 2";
 		assertFalse(Validation.validateUpdateMsg(UpdateVC));
 	}
-	
-	@Test 
+
+	@Test
 	public void testFailureWithOneMsgValidation() {
-		String UpdateVC = ServerCommandType.UPDATE.toString()+ SpriteType.ITEM.toString() + " " + "User2 2 2";;
+		String UpdateVC = ServerCommandType.UPDATE.toString() + SpriteType.ITEM.toString() + " " + "User2 2 2";
+		;
 		assertFalse(Validation.validateUpdateMsg(UpdateVC));
 	}
-	
-	@Test 
+
+	@Test
 	public void testFailureWithErrorMsgValidation() {
 		String UpdateVC = "HelloWold";
 		assertFalse(Validation.validateUpdateMsg(UpdateVC));
 	}
-	
-	
+
 }
